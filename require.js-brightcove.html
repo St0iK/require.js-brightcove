@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Using Brightcove Player with Require.js</title>
+  <style>
+    .video-js {
+      height: 344px;
+      width: 610px;
+    }
+  </style>
+</head>
+
+<body>
+
+ <video id="myPlayerID"
+    data-video-id="5842800655001"
+    data-account="1752604059001"
+    data-player="default"
+    data-embed="default"
+    data-application-id
+    class="video-js"
+    controls
+    width="640" height="360"></video>
+
+
+  <!-- Load Require.js On the page -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.15/require.js"></script>
+
+  <!-- Load Brightcove Player -->
+  <script src="https://players.brightcove.net/1752604059001/default_default/index.min.js"></script>
+  
+  <script>
+    // ❇️This will load the Brighcove player ❇️
+    require(['bc'], () => true);
+    
+    // Has the 'bc' module been specified ?
+    console.log(require.specified('bc'));
+    console.log(require.specified('something_else'));
+
+    // Lets wait a bit for the script to load, as require.js will load the file asynchronously ⏱
+    setTimeout(function(){ 
+      videojs.getPlayer("myPlayerID").ready(function() {
+
+      });
+    }, 3000);
+    
+  </script>
+
+</body>
+
+</html>
